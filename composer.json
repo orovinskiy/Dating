@@ -1,0 +1,12 @@
+{
+  "name": "it_328/Dating",
+  "authors": [
+    {
+      "name": "Oleg Rovinskiy",
+      "email": "orovinskiy@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
