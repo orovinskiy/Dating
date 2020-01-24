@@ -1,0 +1,16 @@
+.label{
+    font-weight: bold;
+}
+
+fieldset{
+    border: 1px solid lightgray;
+    padding: 1em;
+    margin-top: 2%;
+}
+div .alert{
+    margin-top: 2.5%;
+}
+
+button{
+    float: right;
+}
