@@ -22,5 +22,17 @@ $f3->route("GET /", function(){
     echo $view->render("views/home.html");
 });
 
+//Route to the personal info page
+$f3->route("GET /personal-info", function(){
+    $view = new Template();
+    echo $view->render("views/personalInfo.html");
+});
+
+//Route to the profile info page
+$f3->route("POST /profile", function(){
+    $view = new Template();
+    echo $view->render("views/profile.html");
+});
+
 //Run f3
 $f3->run();

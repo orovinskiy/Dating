@@ -3,7 +3,6 @@
 }
 
 fieldset{
-    border: 1px solid lightgray;
     padding: 1em;
     margin-top: 2%;
 }
@@ -13,4 +12,8 @@ div .alert{
 
 button{
     float: right;
+}
+
+#h1Profile{
+    margin-top: 3%;
 }

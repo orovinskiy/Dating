@@ -4,36 +4,37 @@
 
     <div class="container">
         <form action="profile" method="post">
+            <h1 id="h1Profile">Personal Info</h1><hr>
             <div class="row">
-                <div class="col-lg-8 col-md-7 col-12">
-                    <fieldset class="form-group">
-                        <h1>Personal Info</h1><hr>
-
+                <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="firstName"><span class="label">First Name</span></label>
-                            <input type="text" class="form-control " id="firstName" name="firstName" placeholder="Enter First Name">
+                            <label for="email"><span class="label">Email</span></label>
+                            <input type="text" class="form-control " id="email" name="email" placeholder="Enter Email">
                         </div>
 
+                        <label for="state"><span class="label">State</span></label>
                         <div class="form-group">
-                            <label for="lastName"><span class="label">Last Name</span></label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name">
+                            <select class="form-control" id="state" name="state">
+                                <option value="none">Select One</option>
+                                <option value="Washington">Washington</option>
+                                <option value="California">California</option>
+                                <option value="Oregon">Oregon</option>
+                                <option value="New York">New York</option>
+                                <option value="North Dakota">North Dakota</option>
+                                <option value="South Dakota">South Dakota</option>
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="age"><span class="label">Age</span></label>
-                            <input type="text" class="form-control" id="age" name="age" placeholder="Enter Age">
-                        </div>
-
-                        <label id="format"><span class="label">Gender</span>
+                        <label id="format"><span class="label">Seeking</span>
                             <div class="form-group row ml-2" >
                                 <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="method" id="male" value="male" >
+                                    <input class="form-check-input" type="radio" name="seeking" id="male" value="male" >
                                     <label class="form-check-label" for="male">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="method" id="female" value="female">
+                                    <input class="form-check-input" type="radio" name="seeking" id="female" value="female">
                                     <label class="form-check-label" for="female">
                                         Female
                                     </label>
@@ -41,19 +42,11 @@
                             </div>
                         </label>
 
-                        <div class="form-group">
-                            <label for="number"><span class="label">Phone Number</span></label>
-                            <input type="text" class="form-control" id="number" name="number" placeholder="Enter Phone Number">
-                        </div>
-
-                    </fieldset>
                 </div><!-- Column -->
-                <div class="col-lg-4 col-md-5 col-12">
-                    <div class="alert alert-dark">
-                        <p><strong>Note:</strong> All information entered is
-                            protected by our <a href="#">privacy policy</a>. Profile information
-                            can only be viewed by others with your permission.
-                        </p>
+                <div class="col-md-6 col-12">
+                    <div  class="form-group">
+                        <label for="bio"><span class="label">Biography</span></label>
+                        <textarea class="form-control" id="bio" name="bio" rows="7" placeholder="About Yourself"></textarea>
                     </div>
                 </div><!-- Column -->
             </div><!-- Row -->
