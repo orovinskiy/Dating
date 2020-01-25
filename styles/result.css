@@ -1,0 +1,21 @@
+.bio{
+    width: 80%
+}
+
+.final{
+    margin-top: 2%;
+}
+
+button{
+    margin-left: 40%;
+    margin-top: 3%;
+}
+
+.bord{
+    border: 1px solid lightgray;
+    padding: 3%;
+}
+
+img{
+    border-radius: 5%;
+}
