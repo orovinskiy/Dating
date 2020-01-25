@@ -34,10 +34,16 @@ $f3->route("POST /profile", function(){
     echo $view->render("views/profile.html");
 });
 
-//Route to the profile info page
+//Route to the interests info page
 $f3->route("POST /interests", function(){
     $view = new Template();
     echo $view->render("views/interests.html");
+});
+
+//Route to the result info page
+$f3->route("POST /results", function(){
+    $view = new Template();
+    echo $view->render("views/results.html");
 });
 
 //Run f3
