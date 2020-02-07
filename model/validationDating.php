@@ -37,10 +37,12 @@ function validMail($email){
     return true;
 }
 
-function validCheckboxes($userArray, $searchArray){
-    foreach ($userArray as $value) {
-        if(!in_array($value,$searchArray)){
-            return false;
+function validCheckboxes($userArray, $searchArray, $searchArray2){
+    if(isset($userArray)){
+        foreach ($userArray as $value) {
+            if(!in_array($value,$searchArray) && !in_array($value,$searchArray2)){
+                return false;
+            }
         }
     }
     return true;

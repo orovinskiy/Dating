@@ -21,6 +21,12 @@ $f3 = Base::instance();
 $f3->set('states',array('none','Washington','California','Oregon',
     'New York','North Dakota','South Dakota'));
 $f3->set('gender',array('Male','Female'));
+$outdoor = array('Hiking','Biking','Swimming','Collecting','Walking',
+    'Climbing');
+$f3->set('outDoor',$outdoor);
+$indoor = array('TV','Movies','Board-Games','Cooking','Puzzles',
+    'Reading','Playing-Cards','Video-Games');
+$f3->set('inDoor',$indoor);
 
 //Define a default route
 $f3->route("GET /", function(){
@@ -108,6 +114,25 @@ $f3->route("POST|GET /profile", function($f3){
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+        //checks to see if seeking is set
+        if(!isset($_POST['seeking'])){
+            $_SESSION['seeking'] = 'Not Specified';
+        }
+        else{
+            $_SESSION['seeking'] = $_POST['seeking'];
+        }
+
+        //checks to see if bio is set
+        if(empty($_POST['bio'])){
+            $_SESSION['bio'] = 'Not Specified';
+        }
+        else{
+            $_SESSION['bio'] = $_POST['bio'];
+        }
+
+        //captures the state variable
+        $_SESSION['state'] = $_POST['state'];
+
         //checks if the email is valid
         if(validMail($_POST['email'])){
             $_SESSION['email'] = $_POST['email'];
@@ -118,46 +143,41 @@ $f3->route("POST|GET /profile", function($f3){
         }
     }
 
-    //checks to see if seeking is set
-    if(!isset($_POST['seeking'])){
-        $_SESSION['seeking'] = 'Not Specified';
-    }
-    else{
-        $_SESSION['seeking'] = $_POST['seeking'];
-    }
-
-    //checks to see if bio is set
-    if(!isset($_POST['bio'])){
-        $_SESSION['bio'] = 'Not Specified';
-    }
-    else{
-        $_SESSION['bio'] = $_POST['bio'];
-    }
-
-    //captures the state variable
-    $_SESSION['state'] = $_POST['state'];
-
     $view = new Template();
     echo $view->render("views/profile.html");
 });
 
 //Route to the interests info page
-$f3->route("POST|GET /interests", function(){
-    $_SESSION['email'] = $_POST['email'];
-    $_SESSION['state'] = $_POST['state'];
-    $_SESSION['seeking'] = $_POST['seeking'];
-    $_SESSION['bio'] = $_POST['bio'];
+$f3->route("POST|GET /interests", function($f3){
+    $arrayJ = array();
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(validCheckboxes($_POST['doorInter'],$f3->get('inDoor'),$f3->get('outDoor'))){
+            if(isset($_POST['doorInter'])){
+                $_SESSION['doorInter'] = implode(', ',$_POST['doorInter']);
+                $arrayJ = $_POST['doorInter'];
+            }
+            else{
+                $_SESSION['doorInter']= 'Not Specified';
+            }
+            $f3->reroute('/results');
+        }
+        else{
+            $f3->set('error["illegal"]','WARNING: It is a felony to data spoof');
+            if(isset($_POST['doorInter'])){
+                $arrayJ = $_POST['doorInter'];
+            }
+        }
+
+        $f3->set('joke',$arrayJ);
+    }
+
+
     $view = new Template();
     echo $view->render("views/interests.html");
 });
 
 //Route to the result info page
-$f3->route("POST /results", function(){
-    $string = "";
-    for($i = 0; $i < count($_POST['doorInter']); $i++){
-        $string .= $_POST['doorInter'][$i]." ";
-    }
-    $_SESSION['doorInter'] = $string;
+$f3->route("POST|GET /results", function(){
     $view = new Template();
     echo $view->render("views/results.html");
 });
