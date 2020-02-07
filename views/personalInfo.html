@@ -9,47 +9,58 @@
     <link rel="stylesheet" href="styles/personInfo.css" type="text/css">
 
     <div class="container">
-        <form action="profile" method="post">
+        <form action="" method="post">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-12">
                     <fieldset class="form-group">
                         <h1>Personal Info</h1><hr>
 
                         <div class="form-group">
-                            <label for="firstName"><span class="label">First Name</span></label>
-                            <input type="text" class="form-control " id="firstName" name="firstName" placeholder="Enter First Name">
+                            <label for="firstName">
+                                <span class="label">First Name<span class="error"> *{{ @error['fName'] }}</span></span>
+                            </label>
+                            <input type="text" value="{{ @firstName }}" class="form-control"
+                                   id="firstName" name="firstName" placeholder="Enter First Name" maxlength="60">
                         </div>
 
                         <div class="form-group">
-                            <label for="lastName"><span class="label">Last Name</span></label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name">
+                            <label for="lastName">
+                                <span class="label">Last Name<span class="error"> *{{ @error['lName'] }}</span></span>
+                            </label>
+                            <input type="text" class="form-control" id="lastName" name="lastName"
+                                   placeholder="Enter Last Name" value="{{ @lastName }}" maxlength="80">
                         </div>
 
                         <div class="form-group">
-                            <label for="age"><span class="label">Age</span></label>
-                            <input type="text" class="form-control" id="age" name="age" placeholder="Enter Age">
+                            <label for="age">
+                                <span class="label">Age<span class="error"> *{{ @error['age'] }}</span></span>
+                            </label>
+                            <input type="number" class="form-control" id="age" name="age"
+                                   placeholder="Enter Age" value="{{ @age }}" maxlength="3">
                         </div>
 
                         <div><span class="label">Gender</span>
                             <div class="form-group row ml-2" >
-                                <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="method" id="male" value="Male" >
-                                    <label class="form-check-label" for="male">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="method" id="female" value="Female">
-                                    <label class="form-check-label" for="female">
-                                        Female
-                                    </label>
-                                </div>
+                                <repeat group="{{@gender}}" value="@gend">
+                                    <div class="form-check col-6">
+                                        <input class=" form-check-input" type="radio"
+                                        <check if=" {{ @method == @gend }}">
+                                            checked
+                                        </check>name="method" id="{{ @gend }}" value="{{ @gend }}" >
+                                        <label class="form-check-label" for="{{ @gend }}">
+                                            {{ @gend }}
+                                        </label>
+                                    </div>
+                                </repeat>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="number"><span class="label">Phone Number</span></label>
-                            <input type="text" class="form-control" id="number" name="number" placeholder="Enter Phone Number">
+                            <label for="number">
+                                <span class="label">Phone Number<span class="error"> *{{ @error['number'] }}</span></span>
+                            </label>
+                            <input type="text" class="form-control" id="number" name="number"
+                                   placeholder="Enter Phone Number" value="{{ @number }}" maxlength="10">
                         </div>
 
                     </fieldset>

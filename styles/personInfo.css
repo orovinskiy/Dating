@@ -35,3 +35,7 @@ div.form-check-inline{
     margin-top: .5%;
 }
 
+.error{
+    color: red;
+}
+

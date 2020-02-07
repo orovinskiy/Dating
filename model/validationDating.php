@@ -19,7 +19,7 @@ function validAge($age){
 
 function validNumber($number){
     if(trim($number) === "" || $number !== htmlspecialchars($number) ||
-        preg_match("/^\(\d{3}\)\s\d{3}-\d{4}/",$number)){
+        !ctype_digit($number) || strlen($number) != 10){
 
         return false;
 

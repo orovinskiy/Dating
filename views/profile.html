@@ -9,42 +9,44 @@
     <link rel="stylesheet" href="styles/personInfo.css" type="text/css">
 
     <div class="container">
-        <form action="interests" method="post">
+        <form action="" method="post">
             <h1 class="h1Profile">Personal Info</h1><hr>
             <div class="row">
                 <div class="col-md-6 col-12">
                         <div class="form-group">
-                            <label for="email"><span class="label">Email</span></label>
-                            <input type="text" class="form-control " id="email" name="email" placeholder="Enter Email">
+                            <label for="email">
+                                <span class="label">Email<span class="error"> *{{ @error['mail'] }}</span></span>
+                            </label>
+                            <input type="text" class="form-control "
+                                   value="{{ @email}}" id="email" name="email" placeholder="Enter Email">
                         </div>
 
                         <label for="state"><span class="label">State</span></label>
                         <div class="form-group">
                             <select class="form-control" id="state" name="state">
-                                <option value="none">Select One</option>
-                                <option value="Washington">Washington</option>
-                                <option value="California">California</option>
-                                <option value="Oregon">Oregon</option>
-                                <option value="New York">New York</option>
-                                <option value="North Dakota">North Dakota</option>
-                                <option value="South Dakota">South Dakota</option>
+                                <repeat group="{{@states}}" value="{{@state}}">
+                                    <option
+                                        <check if="{{ @stateVar == @state}}">
+                                            selected
+                                        </check>
+                                            value="{{@state}}">{{@state}}</option>
+                                </repeat>
                             </select>
                         </div>
 
                         <div id="format"><span class="label">Seeking</span>
                             <div class="form-group row ml-2" >
-                                <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="seeking" id="male" value="male" >
-                                    <label class="form-check-label" for="male">
-                                        Male
-                                    </label>
-                                </div>
-                                <div class="form-check col-6">
-                                    <input class="form-check-input" type="radio" name="seeking" id="female" value="female">
-                                    <label class="form-check-label" for="female">
-                                        Female
-                                    </label>
-                                </div>
+                                <repeat group="{{ @gender}}" value="{{@gend}}">
+                                    <div class="form-check col-6">
+                                        <input class="form-check-input" type="radio"
+                                        <check if=" {{ @seeking == @gend }}">
+                                            checked
+                                        </check>name="seeking" id="{{@gend}}" value="{{@gend}}" >
+                                        <label class="form-check-label" for="{{@gend}}">
+                                            {{@gend}}
+                                        </label>
+                                    </div>
+                                </repeat>
                             </div>
                         </div>
 
@@ -52,7 +54,8 @@
                 <div class="col-md-6 col-12">
                     <div  class="form-group">
                         <label for="bio"><span class="label">Biography</span></label>
-                        <textarea class="form-control" id="bio" name="bio" rows="7" placeholder="About Yourself"></textarea>
+                        <textarea class="form-control" id="bio" name="bio" rows="7"
+                                   placeholder="About Yourself">{{ @bio}}</textarea>
                     </div>
                 </div><!-- Column -->
             </div><!-- Row -->
