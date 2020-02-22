@@ -13,20 +13,23 @@
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-12">
                     <ul class="list-group">
-                        <li class="list-group-item">Name: {{ @SESSION.firstName }} {{ @SESSION.lastName }}</li>
-                        <li class="list-group-item">Gender: {{ @SESSION.method }}</li>
-                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
-                        <li class="list-group-item">Phone: {{ @SESSION.number }}</li>
-                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
-                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
-                        <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
-                        <li class="list-group-item">Interests: {{ @SESSION.doorInter }}</li>
+                        <li class="list-group-item">Name: {{ @SESSION.member->getFName() }} {{ @SESSION.member->getLName() }}</li>
+                        <li class="list-group-item">Gender: {{ @SESSION.member->getGender() }}</li>
+                        <li class="list-group-item">Age: {{ @SESSION.member->getAge() }}</li>
+                        <li class="list-group-item">Phone: {{ @SESSION.member->getPhone() }}</li>
+                        <li class="list-group-item">Email: {{ @SESSION.member->getEmail() }}</li>
+                        <li class="list-group-item">State: {{ @SESSION.member->getState() }}</li>
+                        <li class="list-group-item">Seeking: {{ @SESSION.member->getSeeking() }}</li>
+
+                        <check if="{{ @SESSION.premium}}">
+                            <li class="list-group-item">Interests: {{ @SESSION.member->getInterestArray() }}</li>
+                        </check>
                     </ul>
                 </div>
                 <div class="col-lg-5 col-md-6 col-12 mt-md-0 ml-md-0 ml-sm-5 ml-3 mt-4">
                     <img src="images/profilePic.png" alt="profile picture">
                     <h3>Biography</h3>
-                    <div class="bio"><p>{{ @SESSION.bio}}</p></div>
+                    <div class="bio"><p>{{ @SESSION.member->getBio() }}</p></div>
                 </div>
             </div>
 
