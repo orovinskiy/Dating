@@ -17,6 +17,13 @@ function validAge($age){
     return true;
 }
 
+function validGender($gender,$searchArray){
+    if(!isset($gender) || !in_array($gender,$searchArray)){
+        return false;
+    }
+    return true;
+}
+
 function validNumber($number){
     if(trim($number) === "" || $number !== htmlspecialchars($number) ||
         !ctype_digit($number) || strlen($number) != 10){

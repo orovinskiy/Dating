@@ -39,7 +39,7 @@
                                    placeholder="Enter Age" value="{{ @age }}">
                         </div>
 
-                        <div><span class="label">Gender</span>
+                        <div><span class="label">Gender<span class="error"> *{{ @error['gender'] }}</span></span>
                             <div class="form-group row ml-2" >
                                 <repeat group="{{@gender}}" value="@gend">
                                     <div class="form-check col-6">
