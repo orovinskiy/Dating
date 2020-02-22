@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Class Members
+ * This class builds up a member object and
+ * has a getter and a setter for each variable.
+ * the only functions provided are getters and setters
+ * @author Oleg Rovinskiy
+ * @version 1.0
+ */
 
 class Members
 {
