@@ -46,10 +46,6 @@
 
 require_once("/home2/orovinsk/connection.php");
 
-//error reporting..
-ini_set("display_errors",1);
-error_reporting(E_ALL);
-
 class DatabaseDate
 {
     private $_db;

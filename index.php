@@ -20,8 +20,19 @@ session_start();
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
+
+$f3->set('states', array('none', 'Washington', 'California', 'Oregon',
+    'New York', 'North Dakota', 'South Dakota'));
+$f3->set('gender', array('Male', 'Female'));
+
+$f3->set('outDoor', array('Hiking', 'Biking', 'Swimming', 'Collecting', 'Walking',
+    'Climbing'));
+
+$f3->set('inDoor', array('TV', 'Movies', 'Board Games', 'Cooking', 'Puzzles',
+    'Reading', 'Playing Cards', 'Video Games'));
+
 $routes = new Routes($f3);
-$validation = new Validate($f3);
+$dbConnect = new DatabaseDate();
 
 //Define a default route
 $f3->route("GET /", function(){
@@ -32,43 +43,24 @@ $f3->route("GET /", function(){
 //Route to the personal info page
 $f3->route("GET|POST /personal-info", function(){
     $_SESSION = array();
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        //Validates the form and makes it sticky
-        //var_dump($_POST);
-        $GLOBALS['validation']->validPerson($_POST['firstName'],$_POST['lastName'],$_POST['age'],
-            $_POST['method'],$_POST['number'],$_POST['premium']);
-
-    }
     $GLOBALS['routes']->personalInfo();
 });
 
 
 //Route to the profile info page
 $f3->route("POST|GET /profile", function($f3){
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-        $GLOBALS['validation']->validPersonInfo($_POST['email'],$_POST['state'],$_POST['seeking']
-        ,$_POST['bio']);
-    }
     //var_dump($_SESSION);
     $GLOBALS['routes']->profile();
 });
 
 //Route to the interests info page
 $f3->route("POST|GET /interests", function($f3){
-    $arrayJ = array();
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $GLOBALS['validation']->validInterest($_POST['doorInter']);
-    }
-
     $GLOBALS['routes']->interests();
 });
 
 //Route to the result info page
 $f3->route("POST|GET /results", function(){
-    $dbConnect = new DatabaseDate();
-    $dbConnect->insertMember();
+    $GLOBALS['dbConnect']->insertMember();
     $GLOBALS['routes']->results();
 });
 
