@@ -29,8 +29,8 @@ class Validate
         $this->_f3->set('outDoor',array('Hiking','Biking','Swimming','Collecting','Walking',
             'Climbing'));
 
-        $this->_f3->set('inDoor',array('TV','Movies','Board-Games','Cooking','Puzzles',
-            'Reading','Playing-Cards','Video-Games'));
+        $this->_f3->set('inDoor',array('TV','Movies','Board Games','Cooking','Puzzles',
+            'Reading','Playing Cards','Video Games'));
     }
 
     /**
@@ -158,7 +158,7 @@ class Validate
     {
         if(validCheckboxes($interest,$this->_f3->get('inDoor'),$this->_f3->get('outDoor'))){
             if(isset($interest)){
-                $_SESSION['member']->setInterestArray(implode(', ',$interest));
+                $_SESSION['member']->setInterestArray($interest);
                 $arrayJ = $interest;
             }
             $this->_f3->reroute('/results');

@@ -18,12 +18,14 @@ session_start();
 
 //Instantiate F3
 $f3 = Base::instance();
+$f3->set('DEBUG', 3);
 
 $routes = new Routes($f3);
 $validation = new Validate($f3);
 
 //Define a default route
 $f3->route("GET /", function(){
+    $_SESSION = array();
     $GLOBALS['routes']->home();
 });
 
@@ -32,6 +34,7 @@ $f3->route("GET|POST /personal-info", function(){
     $_SESSION = array();
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         //Validates the form and makes it sticky
+        //var_dump($_POST);
         $GLOBALS['validation']->validPerson($_POST['firstName'],$_POST['lastName'],$_POST['age'],
             $_POST['method'],$_POST['number'],$_POST['premium']);
 
@@ -64,7 +67,8 @@ $f3->route("POST|GET /interests", function($f3){
 
 //Route to the result info page
 $f3->route("POST|GET /results", function(){
-    //var_dump($_SESSION['member']);
+    $dbConnect = new DatabaseDate();
+    $dbConnect->insertMember();
     $GLOBALS['routes']->results();
 });
 

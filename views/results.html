@@ -22,7 +22,7 @@
                         <li class="list-group-item">Seeking: {{ @SESSION.member->getSeeking() }}</li>
 
                         <check if="{{ @SESSION.premium}}">
-                            <li class="list-group-item">Interests: {{ @SESSION.member->getInterestArray() }}</li>
+                            <li class="list-group-item">Interests: {{ implode(', ',@SESSION.member->getInterestArray()) }}</li>
                         </check>
                     </ul>
                 </div>

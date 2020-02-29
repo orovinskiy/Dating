@@ -16,7 +16,6 @@ class PremiumMembers extends Members
     function __construct($fName, $lName, $age, $gender, $phone)
     {
         parent::__construct($fName, $lName, $age, $gender, $phone);
-        $this->_interestArray = "Not Specified";
     }
 
     /**
