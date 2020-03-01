@@ -4,6 +4,8 @@
  * Class Routes
  * This class manages all the routes for all my views.
  * Basically this class builds the paths to make a friendly user interface
+ * and communicates with the database through the DatabaseDate.php class
+ * ass well as Interest.php
  * @author Oleg Rovinskiy
  * @version 1.0
  */
@@ -15,7 +17,8 @@ class Routes
     /**
      * Routes constructor.
      * this constructor initiates a fat free object to itself.
-     * @param $f3 fat free object
+     * It also creates a DtabaseDate object
+     * @param $f3 = fat free object
      */
     function __construct($f3)
     {
@@ -35,6 +38,10 @@ class Routes
 
     /**
      * Builds a path to the persons info page
+     * and validates the page. If all validation is
+     * passed will transfer to the profile page. It also
+     * decides which object to build between Member class and
+     * PremiumMember class
      */
     function personalInfo()
     {
@@ -99,7 +106,11 @@ class Routes
     }
 
     /**
-     * Builds a path to the persons personal info page
+     * Builds a path to the persons personal info page.
+     * Validates the page and then decides if the user has
+     * access to interests or not. If they are premium will transfer
+     * to the interest page if not will get transferred to the final page
+     * the result page
      */
     function profile()
     {
@@ -141,6 +152,8 @@ class Routes
 
     /**
      * Builds a path to the persons interest page
+     * and saves the interests the user chooses.
+     * also validates the page
      */
     function interests()
     {
@@ -170,6 +183,7 @@ class Routes
 
     /**
      * Builds a path to the persons summary page
+     * Shows all of the users information and saves it to the database
      */
     function results()
     {
@@ -178,6 +192,11 @@ class Routes
         echo $view->render("views/results.html");
     }
 
+    /**
+     * Builds a path to the admin page
+     * as well as populates a table with all the members
+     * data.
+     */
     function admin(){
         $this->_f3->set('memberData', $this->_dbh->getMembers());
         $this->_f3->set('interests', new Interest($this->_f3,$this->_dbh));

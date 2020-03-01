@@ -29,7 +29,7 @@
                     <repeat group="{{ @memberData }}" value="{{ @member }}">
                         <tr>
                             <th>{{ @member['member_id'] }}</th>
-                            <th>{{ @member['fname'] }} {{@member['lname']}}</th>
+                            <th> {{@member['lname']}} {{ @member['fname'] }}</th>
                             <th>{{ @member['age'] }}</th>
                             <th>{{ @member['phone'] }}</th>
                             <th>{{ @member['email'] }}</th>

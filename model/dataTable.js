@@ -1,3 +1,6 @@
+/**
+ * This is the responsive table from bootsrap 4
+ */
 $('#member-table').DataTable({
     responsive: {
         details: {
@@ -11,5 +14,6 @@ $('#member-table').DataTable({
                 tableClass: 'table'
             } )
         }
-    }
+    },
+    order: [[ 1 ]]
 });

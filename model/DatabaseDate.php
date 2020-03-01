@@ -42,6 +42,13 @@
     (DEFAULT,'Hiking','outdoor'),(DEFAULT,'Biking','outdoor'),
     (DEFAULT,'Swimming','outdoor'),(DEFAULT,'Collecting','outdoor'),
     (DEFAULT,'Walking','outdoor'),(DEFAULT,'Climbing','outdoor')
+ *
+ *
+ * This class creates a connection between
+ * the database and retreives all the required
+ * data
+ * @author Oleg Rovinskiy
+ * @version 1.0
  */
 
 require_once("/home2/orovinsk/connection.php");
@@ -50,6 +57,10 @@ class DatabaseDate
 {
     private $_db;
 
+    /**
+     * DatabaseDate constructor.
+     * Creates a new PDO connection
+     */
     function __construct()
     {
         //This part checks if the connection was successful
@@ -65,6 +76,10 @@ class DatabaseDate
         $this->_db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     }
 
+    /**
+     * Inserts the users information into the members table and
+     * inserts the correct ids into the member_insert table
+     */
     function insertMember()
     {
         $memberObj = $_SESSION['member'];
@@ -120,6 +135,11 @@ class DatabaseDate
         }
     }
 
+    /**
+     * This methods gets all the possible members in the table
+     * @return array = all the rows of
+     * all the members information as a associate array
+     */
     function getMembers()
     {
         $sql = 'SELECT * FROM member ORDER BY lname';
@@ -133,6 +153,10 @@ class DatabaseDate
         return $result;
     }
 
+    /**This method gets the interst of the giving member id
+     * @param $memID = member id
+     * @return array = all the interest of the user
+     */
     function getMemInterest($memID)
     {
         $sql = "SELECT interest FROM interests AS inter INNER JOIN member_interest 
@@ -150,6 +174,12 @@ class DatabaseDate
         return $result;
     }
 
+    /**
+     * This gets a single interest based on the name of the
+     * interest
+     * @param $interest = interest name
+     * @return mixed = array with one interest
+     */
     function getInterest($interest)
     {
         $sql = "SELECT interest_id FROM interests WHERE interest = :interName";
@@ -163,6 +193,11 @@ class DatabaseDate
          return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**Inserts the specific interest a user selected
+     * into the member_interest
+     * @param $memId = member id
+     * @param $interID = interest id
+     */
     function insertInterest($memId, $interID)
     {
         $sql = 'INSERT INTO member_interest VALUES(:memberID,:interID)';
