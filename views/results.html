@@ -13,16 +13,16 @@
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-12">
                     <ul class="list-group">
-                        <li class="list-group-item">Name: {{ @SESSION.member->getFName() }} {{ @SESSION.member->getLName() }}</li>
-                        <li class="list-group-item">Gender: {{ @SESSION.member->getGender() }}</li>
-                        <li class="list-group-item">Age: {{ @SESSION.member->getAge() }}</li>
-                        <li class="list-group-item">Phone: {{ @SESSION.member->getPhone() }}</li>
-                        <li class="list-group-item">Email: {{ @SESSION.member->getEmail() }}</li>
-                        <li class="list-group-item">State: {{ @SESSION.member->getState() }}</li>
-                        <li class="list-group-item">Seeking: {{ @SESSION.member->getSeeking() }}</li>
+                        <li class="list-group-item"><strong>Name:</strong> {{ @SESSION.member->getFName() }} {{ @SESSION.member->getLName() }}</li>
+                        <li class="list-group-item"><strong>Gender:</strong> {{ @SESSION.member->getGender() }}</li>
+                        <li class="list-group-item"><strong>Age:</strong> {{ @SESSION.member->getAge() }}</li>
+                        <li class="list-group-item"><strong>Phone:</strong> {{ @SESSION.member->getPhone() }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ @SESSION.member->getEmail() }}</li>
+                        <li class="list-group-item"><strong>State:</strong> {{ @SESSION.member->getState() }}</li>
+                        <li class="list-group-item"><strong>Seeking:</strong> {{ @SESSION.member->getSeeking() }}</li>
 
                         <check if="{{ @SESSION.premium}}">
-                            <li class="list-group-item">Interests: {{ implode(', ',@SESSION.member->getInterestArray()) }}</li>
+                            <li class="list-group-item"><strong>Interests:</strong> {{ implode(', ',@SESSION.member->getInterestArray()) }}</li>
                         </check>
                     </ul>
                 </div>

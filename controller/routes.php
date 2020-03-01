@@ -10,6 +10,7 @@
 class Routes
 {
     private $_f3;
+    private $_dbh;
 
     /**
      * Routes constructor.
@@ -19,6 +20,7 @@ class Routes
     function __construct($f3)
     {
         $this->_f3 = $f3;
+        $this->_dbh = new DatabaseDate();
     }
 
 
@@ -171,7 +173,16 @@ class Routes
      */
     function results()
     {
+        $this->_dbh->insertMember();
         $view = new Template();
         echo $view->render("views/results.html");
+    }
+
+    function admin(){
+        $this->_f3->set('memberData', $this->_dbh->getMembers());
+        $this->_f3->set('interests', new Interest($this->_f3,$this->_dbh));
+
+        $view = new Template();
+        echo $view->render("views/admin.html");
     }
 }

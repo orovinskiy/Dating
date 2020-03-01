@@ -122,12 +122,32 @@ class DatabaseDate
 
     function getMembers()
     {
+        $sql = 'SELECT * FROM member ORDER BY lname';
 
+        $statement = $this->_db->prepare($sql);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 
-    function getMember($member_id)
+    function getMemInterest($memID)
     {
+        $sql = "SELECT interest FROM interests AS inter INNER JOIN member_interest 
+                AS mem ON mem.interest_id = inter.interest_id
+                INNER JOIN member ON member.member_id = mem.member_id WHERE member.member_id = :memID";
 
+        $statement = $this->_db->prepare($sql);
+
+        $statement->bindParam(':memID',$memID);
+
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 
     function getInterest($interest)

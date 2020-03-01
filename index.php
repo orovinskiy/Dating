@@ -32,7 +32,6 @@ $f3->set('inDoor', array('TV', 'Movies', 'Board Games', 'Cooking', 'Puzzles',
     'Reading', 'Playing Cards', 'Video Games'));
 
 $routes = new Routes($f3);
-$dbConnect = new DatabaseDate();
 
 //Define a default route
 $f3->route("GET /", function(){
@@ -60,8 +59,11 @@ $f3->route("POST|GET /interests", function($f3){
 
 //Route to the result info page
 $f3->route("POST|GET /results", function(){
-    $GLOBALS['dbConnect']->insertMember();
     $GLOBALS['routes']->results();
+});
+
+$f3->route("GET /admin", function(){
+    $GLOBALS['routes']->admin();
 });
 
 //Run f3
