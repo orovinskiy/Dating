@@ -30,7 +30,8 @@ class Interest
      * @param $memID = member id
      * @return string = all the interests of the user
      */
-    function allInterest($memID){
+    function allInterest($memID)
+    {
         $holder = $this->_dbh->getMemInterest($memID);
         $array = array();
 

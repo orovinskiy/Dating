@@ -197,7 +197,8 @@ class Routes
      * as well as populates a table with all the members
      * data.
      */
-    function admin(){
+    function admin()
+    {
         $this->_f3->set('memberData', $this->_dbh->getMembers());
         $this->_f3->set('interests', new Interest($this->_f3,$this->_dbh));
 
